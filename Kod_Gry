@@ -20,7 +20,7 @@ int main()
 	string podpowiedz[4];
 
 
-	//Tu zaczyna sie zabezpieczenie przeciw idiota
+	//Tu zaczyna sie zabezpieczenie
 
 	do
 	{
@@ -35,7 +35,7 @@ int main()
 			
 			cin.clear(); /*kasowanie flagi błędu strumienia - blad zly typ? Skasuje go!*/
 			cin.ignore(numeric_limits<streamsize>::max(), '\n'); /*kasowanie zbędnych znaków z bufora - podales niepotrzebne literki? Usune je, wpisuj na nowo!*/
-			/*to wyzej mozna zapisac np. cin.ignore(1000, '\n');, jednak chcemy, aby kasowal namwszytkie znaki az do entera, a nie jakas ilosc, stad mamy <limits>*/
+			/*to wyzej mozna zapisac np. cin.ignore(1000, '\n');, jednak chcemy, aby kasowal nam wszytkie znaki az do entera, a nie jakas ilosc, stad mamy <limits>*/
 		}
 	} while(zasady!=1 && zasady!=2);
 	
@@ -47,15 +47,15 @@ int main()
 			cout<<"- 'prawie' oznacza, że dany kolor występuje w kodzie, ale jest na złym miejscu,"<<endl;
 			cout<<"- '_' oznacza, że jeden lub więcej kolorów nie występuje w kodzie."<<endl;
 			cout<<"Aby podać proponowany kod gracz wpisuje, oddzielając spacją, pierwsze (duże) litery podanych kolorów:"<<endl;
-      cout<<"\033[1;" << 31 << "mC - czerwony\033[0m" << endl;
-      cout<<"\033[1;" << 34 << "mN - niebieski\033[0m" << endl;
-      cout<<"\033[1;" << 33 << "mZ - zolty\033[0m" << endl;
-      cout<<"\033[1;" << 35 << "mR - rozowy\033[0m" << endl;
-      cout<<"\033[1;" << 37 << "mB - bialy\033[0m" << endl;
-      cout<<"\033[1;" << 36 << "mT - turkusowy\033[0m" << endl;
-      cout<<""<<endl;
-      cout<<"Powodzenia!"<<endl;
-      cout<<" "<<endl;
+      			cout<<"\033[1;" << 31 << "mC - czerwony\033[0m" << endl;
+      			cout<<"\033[1;" << 34 << "mN - niebieski\033[0m" << endl;
+      			cout<<"\033[1;" << 33 << "mZ - zolty\033[0m" << endl;
+     		 	cout<<"\033[1;" << 35 << "mR - rozowy\033[0m" << endl;
+      			cout<<"\033[1;" << 37 << "mB - bialy\033[0m" << endl;
+      			cout<<"\033[1;" << 36 << "mT - turkusowy\033[0m" << endl;
+      			cout<<""<<endl;
+      			cout<<"Powodzenia!"<<endl;
+      			cout<<" "<<endl;
 		}
 		
 		else if (zasady == 2)
@@ -188,22 +188,22 @@ cout << "Podaj kolory" << endl<<endl;
 			else if (kolor[0] == twojkolor[1] ||
 				kolor[0] == twojkolor[2] ||
 				kolor[0] == twojkolor[3])
-				cout << podpowiedz[i] << "Prawie~ ";
+				cout << podpowiedz[i] << "Prawie ";
 
 			else if (kolor[1] == twojkolor[0] ||
 				kolor[1] == twojkolor[2] ||
 				kolor[1] == twojkolor[3])
-				cout << podpowiedz[i] << "Prawie~ ";
+				cout << podpowiedz[i] << "Prawie ";
 
 			else if (kolor[2] == twojkolor[0] ||
 				kolor[2] == twojkolor[1] ||
 				kolor[2] == twojkolor[3])
-				cout << podpowiedz[i] << "Prawie~ ";
+				cout << podpowiedz[i] << "Prawie ";
 
 			else if (kolor[3] == twojkolor[0] ||
 				kolor[3] == twojkolor[1] ||
 				kolor[3] == twojkolor[2])
-				cout << podpowiedz[i] << "Prawie~ ";
+				cout << podpowiedz[i] << "Prawie ";
 
 			
 		}
