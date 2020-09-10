@@ -1,0 +1,240 @@
+#include <iostream>
+#include <cstdlib>
+#include <time.h>
+#include <string>
+#include <limits>
+
+
+using namespace std;
+
+
+int main()
+{
+  time_t start, koniec;
+	char kolor[4], twojkolor[4];
+	srand(time(NULL));
+	int random = (rand() % 6);
+	int t[4];
+	int zasady, i, j, tura, kolory;
+	double roznica;
+	string podpowiedz[4];
+
+
+	//Tu zaczyna sie zabezpieczenie przeciw idiota
+
+	do
+	{
+		cout << "Czy chcesz uslyszec zasady?" << endl;
+		cout << "Wybierz 1, jesli chcesz je uslyszec" << endl;
+		cout << "Wybierz 2, jesli nie chcesz" << endl;
+		while (!(cin >> zasady))
+		{
+			cout << "Prosze podac 1 lub 2" << endl;
+			
+			/*Te dwie komendy sluza do sprawdzania, czy nasz "strumien wejsciowy" - cin zostal wprowadzony poprawnie. Sluzy do zapobiegania wpisywania np. liter pod znaki typu int, dzieki czemu na pewno zmusimy uzytkownika, aby wprowadzil to, czego oczekujemy.*/
+			
+			cin.clear(); /*kasowanie flagi błędu strumienia - blad zly typ? Skasuje go!*/
+			cin.ignore(numeric_limits<streamsize>::max(), '\n'); /*kasowanie zbędnych znaków z bufora - podales niepotrzebne literki? Usune je, wpisuj na nowo!*/
+			/*to wyzej mozna zapisac np. cin.ignore(1000, '\n');, jednak chcemy, aby kasowal namwszytkie znaki az do entera, a nie jakas ilosc, stad mamy <limits>*/
+		}
+	} while(zasady!=1 && zasady!=2);
+	
+	
+		if (zasady == 1)
+		{
+			cout << "Komputer układa kod z czterech kolorów (kolory mogą się powtarzać). Gra kończy się po poprawnym wskazaniu kodu przez gracza lub po dwunastu nieudanych próbach. Gracz podaje proponowane przez siebie kolory, w odpowiedniej kolejności. Rozszyfrowanie kodu ułatwiają informacje podawane przez komputer:"<<endl;
+			cout<<"- 'dobrze' oznacza, że gracz umieścił odpowiedni kolor na odpowiednim miejscu,"<<endl;
+			cout<<"- 'prawie' oznacza, że dany kolor występuje w kodzie, ale jest na złym miejscu,"<<endl;
+			cout<<"- '_' oznacza, że jeden lub więcej kolorów nie występuje w kodzie."<<endl;
+			cout<<"Aby podać proponowany kod gracz wpisuje, oddzielając spacją, pierwsze (duże) litery podanych kolorów:"<<endl;
+      cout<<"\033[1;" << 31 << "mC - czerwony\033[0m" << endl;
+      cout<<"\033[1;" << 34 << "mN - niebieski\033[0m" << endl;
+      cout<<"\033[1;" << 33 << "mZ - zolty\033[0m" << endl;
+      cout<<"\033[1;" << 35 << "mR - rozowy\033[0m" << endl;
+      cout<<"\033[1;" << 37 << "mB - bialy\033[0m" << endl;
+      cout<<"\033[1;" << 36 << "mT - turkusowy\033[0m" << endl;
+      cout<<""<<endl;
+      cout<<"Powodzenia!"<<endl;
+      cout<<" "<<endl;
+		}
+		
+		else if (zasady == 2)
+		{
+			cout << "Zacznij gre" << endl<< endl;
+		}
+		
+		
+	//a tu konczy~
+
+  //TERAZ WYBIERAMY, CZY CHCEMY, ABY KOLORY SIE POWTARZALY!!!! I od razu petle do nich!
+  
+  do
+    {
+      cout << "Czy chcesz, aby kolory sie powtarzaly?" << endl;
+		  cout << "Tak - wybierz 1" << endl;
+		  cout << "Nie - wybierz 2" << endl;
+		  while(!(cin >> kolory))
+		  {
+		    cout << "Prosze podac 1 lub 2" << endl;
+		    cin.clear();
+			  cin.ignore(numeric_limits<streamsize>::max(), '\n');
+		  }
+		  
+    }
+    while(kolory!=1 && kolory!=2);
+    
+    if(kolory==1)
+    {
+      for (i = 0; i<4; i++)
+	    {
+		    random = (rand() % 6);
+		    /*Tu mozna dodawac kolory*/
+		    switch (random)
+		      {
+		        case 0:
+			       kolor[i] = 'C';
+			         break;
+		        case 1:
+		         kolor[i] = 'N';
+		          break;
+		        case 2:
+			        kolor[i] = 'Z';
+			          break;
+		        case 3:
+			        kolor[i] = 'R';
+		          	break;
+		        case 4:
+			        kolor[i] = 'B';
+			          break;
+		        case 5:
+			        kolor[i] = 'T';
+			          break;
+		        }
+		//Tu linika pomagająca testowac program, w grze nie ma zastosowania~
+		  //cout << kolor[i] << " ";
+	    }
+    }
+    
+    else if (kolory==2)
+    {
+         for (i = 0; i<4; i++)
+	      {
+	       	do
+		      {
+		       random = (rand() % 6);
+	      	}
+		    while(( t[0] == random ) || (t[1] == random ) || (t[2] == random ) ||( t[3] == random ));
+		
+        t[i]=random;
+
+	      switch (random)
+		      {
+	        	case 0:
+			        kolor[i] = 'C';
+			        break;
+		        case 1:
+			        kolor[i] = 'N';
+			        break;
+		        case 2:
+			        kolor[i] = 'Z';
+			        break;
+	        	case 3:
+			        kolor[i] = 'R';
+			        break;
+		        case 4:
+			        kolor[i] = 'B';
+			        break;
+		        case 5:
+			        kolor[i] = 'T';
+			         break;
+		        }
+
+		//Tu linika pomagająca testowac program, w grze nie ma zastosowania~
+		    //cout << kolor[i] << " ";
+	    } 
+    }
+
+
+//TU ZACZYNA SIE GRA!!!
+
+cout << "Podaj kolory" << endl<<endl;
+
+	tura = 1;
+  time( & start );
+	while (tura<13)
+	{
+		cout << "To jest twoja: " << tura << " proba " << endl;
+		tura++;
+		for (i = 0; i<4; i++)
+		{
+			//Tu podaje sie kolory
+			cin >> twojkolor[i];
+			//cout << twojkolor[i] << " ";
+
+		}
+		//Petla sprawdza, czy kolory sa na dorym miejscu - wrzucilam wszystko
+		for (i = 0; i<4; i++)
+		{
+			if (kolor[i] == twojkolor[i])
+				cout << podpowiedz[i] << "Dobrze ";
+
+			else if (kolor[i] != twojkolor[i] &&
+				kolor[0] != twojkolor[i] &&
+				kolor[1] != twojkolor[i] &&
+				kolor[2] != twojkolor[i] &&
+				kolor[3] != twojkolor[i])
+				cout << podpowiedz[i] << "_ ";
+
+			else if (kolor[0] == twojkolor[1] ||
+				kolor[0] == twojkolor[2] ||
+				kolor[0] == twojkolor[3])
+				cout << podpowiedz[i] << "Prawie~ ";
+
+			else if (kolor[1] == twojkolor[0] ||
+				kolor[1] == twojkolor[2] ||
+				kolor[1] == twojkolor[3])
+				cout << podpowiedz[i] << "Prawie~ ";
+
+			else if (kolor[2] == twojkolor[0] ||
+				kolor[2] == twojkolor[1] ||
+				kolor[2] == twojkolor[3])
+				cout << podpowiedz[i] << "Prawie~ ";
+
+			else if (kolor[3] == twojkolor[0] ||
+				kolor[3] == twojkolor[1] ||
+				kolor[3] == twojkolor[2])
+				cout << podpowiedz[i] << "Prawie~ ";
+
+			
+		}
+
+		cout << endl << endl;
+
+		if (kolor[0] == twojkolor[0] &&
+			kolor[1] == twojkolor[1] &&
+			kolor[2] == twojkolor[2] &&
+			kolor[3] == twojkolor[3])
+		{
+			cout << "Brawo! Wygrales!" << endl;
+			
+			time( & koniec );
+			roznica = difftime( koniec, start );
+      cout << "Twoj czas to: "<< roznica<<" sekund!"<<endl;
+			
+			break;
+		}
+
+		else
+			cout << "To nie to..." << endl<<endl;
+
+	}
+
+	if(tura==13)
+	{
+		cout << "Niestety, nie udalo sie... Sprobuj zagrac jeszcze raz" << endl;
+		cout<<"Kolory to: "<<endl;
+		cout<<kolor[0]<<" "<<kolor[1]<<" "<<kolor[2]<<" "<<kolor[3]<<endl;
+	}
+
+	return 0;
+}
